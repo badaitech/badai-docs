@@ -1,101 +1,91 @@
-# System Architecture
+# System Architecture Overview
 
-## Architectural Overview
+## Core Architecture Philosophy
 
-Bad AI implements a distributed architecture designed around multi-agent orchestration and knowledge processing. The system's architecture enables complex agent interactions, knowledge sharing, and scalable processing through several specialized subsystems.
+Bad AI implements a distributed, enterprise-grade architecture designed around three fundamental principles:
+1. Multi-agent orchestration with mathematical guarantees
+2. Knowledge-centric processing with semantic understanding
+3. Visual programming with formal verification
+
+This architectural approach enables complex AI behaviors while maintaining system reliability and performance at scale.
+
+## System Layers
+
+![Architecture](/assets/architecture01.png)
+
+### 1. Presentation Layer: Chain Graph Editor
+
+The Chain Graph Editor provides a visual programming environment that transforms complex AI behavior design into an intuitive yet powerful process:
+
+- **Visual Programming Interface**
+    - Component-based design
+    - Real-time validation
+    - Type-safe connections
+    - Visual debugging tools
+
+- **Development Features**
+    - Real-time preview
+    - Component library
+    - Pattern templates
+
+### 2. API Layer: GraphQL with WebSocket
+
+The API layer implements a modern, real-time capable interface:
+
+- **GraphQL API**
+    - Type-safe operations
+    - Efficient data retrieval
+    - Batch operations
+    - Query optimization
+
+- **WebSocket Integration**
+    - Real-time updates
+    - Bi-directional communication
+    - Stream processing
+    - State synchronization
+
+### 3. Core Processing Layer
+
+The core layer consists of two primary systems:
+
+#### Go Backend
+Handles system operations and coordination:
+- Request processing
+- Resource management
+- State coordination
+- Security enforcement
+- Performance monitoring
+
+#### Python Agent System
+Manages AI operations and agent behavior:
+- Agent execution
+- LLM integration
+- Knowledge processing
+- Context management
+
+### 4. Knowledge Layer
+
+The Knowledge Database (KDB) provides sophisticated semantic processing:
+
+- **Vector Operations**
+    - Semantic similarity search
+    - Context-aware retrieval
+    - Dynamic knowledge updates
+    - Efficient indexing
+
+- **Knowledge Processing**
+    - Document analysis
+    - Semantic understanding
+    - Context management
+    - Knowledge graph construction
 
 ## System Components
 
-```mermaid
-graph TD
-    A[Chain Graph Editor] --> B[GraphQL API Layer]
-    B --> C[Go Backend]
-    B --> D[Python Agent System]
-    
-    C --> E[PostgreSQL]
-    C --> F[Redis]
-    
-    D --> G1[LLM Providers]
-    D --> G2[Agent Router]
-    
-    C --> H[Knowledge DB]
-    D --> H
-    
-    subgraph "Knowledge Processing"
-        H --> I1[Vector Storage]
-        H --> I2[Document Processor]
-        H --> I3[Semantic Search]
-    end
-    
-    subgraph "Agent Orchestration"
-        G2 --> J1[Agent Pool]
-        G2 --> J2[State Manager]
-        G2 --> J3[Context Handler]
-    end
-```
-
-## Core Subsystems
-
-### 1. Chain Graph System
-The Chain Graph system provides the foundation for agent behavior definition and execution:
-
-```mermaid
-graph LR
-    A[Chain Definition] --> B[Execution Plan]
-    B --> C[Node Processing]
-    C --> D[State Management]
-    
-    subgraph "Execution Layer"
-        C1[Parallel Execution]
-        C2[Resource Management]
-        C3[Error Handling]
-    end
-```
-
-Components:
-- Graph Compiler
-- Execution Planner
-- Node Scheduler
-- State Manager
-- Resource Controller
-
-### 2. Knowledge Database System
-
-The KDB implements a hierarchical knowledge processing architecture:
+### 1. Agent Orchestration System
 
 ```mermaid
 graph TD
-    A[Document Input] --> B[Processing Pipeline]
-    B --> C[Vector Storage]
-    
-    subgraph "Processing Stages"
-        B1[Document Parsing]
-        B2[Page Segmentation]
-        B3[Chunk Generation]
-        B4[Vector Embedding]
-    end
-    
-    subgraph "Search System"
-        C1[HNSW Index]
-        C2[Query Processor]
-        C3[Result Ranker]
-    end
-```
-
-Features:
-- Document Processing Pipeline
-- Vector Operations System
-- Semantic Search Engine
-- Knowledge Graph Builder
-- Context Management
-
-### 3. Agent Orchestration System
-
-The multi-agent orchestration system manages agent interactions and task distribution:
-
-```mermaid
-graph TD
-    A[Input] --> B[Router]
+    A[Request] --> B[Router]
     B --> C[Agent Selection]
     C --> D[Execution]
     
@@ -105,148 +95,171 @@ graph TD
         B3[Priority Management]
     end
     
-    subgraph "Agent Coordination"
-        D1[Context Sharing]
-        D2[State Sync]
-        D3[Knowledge Exchange]
+    subgraph "Execution"
+        D1[Context Management]
+        D2[State Control]
+        D3[Resource Allocation]
     end
 ```
 
-Components:
-- Message Router
-- Agent Manager
-- Context Controller
-- State Synchronizer
-- Resource Allocator
+The orchestration system manages:
+- Agent coordination
+- Resource allocation
+- State management
+- Load balancing
+- Error handling
 
-### 4. Data Layer Architecture
-
-The data layer implements a multi-tiered storage system:
+### 2. Knowledge Processing System
 
 ```mermaid
-graph LR
-    A[Application Layer] --> B[Data Access Layer]
-    B --> C1[PostgreSQL]
-    B --> C2[Redis]
-    B --> C3[Vector Store]
+graph TD
+    A[Input] --> B[Processing Pipeline]
+    B --> C[Vector Storage]
+    C --> D[Retrieval System]
     
-    subgraph "Data Management"
-        D1[Transaction Handler]
-        D2[Cache Manager]
-        D3[Vector Operations]
+    subgraph "Processing"
+        B1[Document Analysis]
+        B2[Semantic Extraction]
+        B3[Vector Generation]
+    end
+    
+    subgraph "Retrieval"
+        D1[Semantic Search]
+        D2[Context Management]
+        D3[Knowledge Integration]
     end
 ```
 
 Features:
-- ACID Compliance
-- Vector Operations
-- Real-time State Management
-- Cache Optimization
-- Sharding Support
+- Advanced semantic processing
+- Efficient vector operations
+- Context-aware retrieval
+- Dynamic knowledge updates
 
-## Communication Patterns
+### 3. Execution Engine
 
-### 1. Agent Interaction Flow
+The execution engine provides:
+- Parallel processing capabilities
+- Resource optimization
+- State management
+- Error boundaries
+- Performance monitoring
+
+## Data Architecture
+
+### 1. Storage Systems
+
+The platform utilizes specialized storage systems:
+
+- **PostgreSQL with Vector Operations**
+    - ACID compliance
+    - Vector indexing
+    - Transaction safety
+    - Complex queries
+
+- **Redis Cache Layer**
+    - High-performance caching
+    - Real-time operations
+    - State management
+    - Session handling
+
+### 2. Data Flow
 
 ```mermaid
-sequenceDiagram
-    participant U as User
-    participant R as Router
-    participant A1 as Agent 1
-    participant A2 as Agent 2
-    participant K as KDB
-    
-    U->>R: Message
-    R->>R: Intent Analysis
-    R->>A1: Primary Task
-    A1->>K: Knowledge Query
-    A1->>A2: Subtask Delegation
-    A2->>K: Context Query
-    A2->>A1: Subtask Result
-    A1->>U: Final Response
+graph LR
+    A[Client] --> B[API Layer]
+    B --> C[Processing Layer]
+    C --> D1[Vector Store]
+    C --> D2[Relational Store]
+    C --> D3[Cache Layer]
 ```
 
-### 2. Knowledge Processing Flow
+Key features:
+- Type-safe data flow
+- Efficient routing
+- Cache optimization
+- Transaction management
 
-```mermaid
-sequenceDiagram
-    participant D as Document
-    participant P as Processor
-    participant V as Vector Store
-    participant S as Search
-    
-    D->>P: Input
-    P->>P: Segmentation
-    P->>V: Embeddings
-    V->>S: Index
-    S->>S: Optimization
-```
+## Security Architecture
 
-## System Integration
+### 1. Authentication & Authorization
+- Role-based access control
+- Session management
+- Token validation
+- Permission enforcement
 
-### 1. External Integrations
-- LLM Provider Integration
-- Platform Connectors
-- Webhook System
-- Custom API Integration
-
-### 2. Internal Communication
-- GraphQL API
-- WebSocket System
-- Message Queue
-- State Synchronization
+### 2. Data Security
+- End-to-end encryption
+- Secure storage
+- Access logging
+- Audit trails
 
 ## Scalability Architecture
 
-The system implements several scalability patterns:
-
 ### 1. Horizontal Scaling
-- API Layer Scaling
-- Agent Pool Management
-- Database Sharding
-- Cache Distribution
+The system supports horizontal scaling at multiple levels:
+- API layer scaling
+- Processing node expansion
+- Storage sharding
+- Cache distribution
 
 ### 2. Resource Management
-- Load Balancing
-- Resource Allocation
-- Cost Optimization
-- Performance Monitoring
+Sophisticated resource management ensures optimal performance:
+- Dynamic allocation
+- Load balancing
+- Cost optimization
+- Resource monitoring
 
-## Fault Tolerance Design
+## Deployment Architecture
 
-The system implements multiple reliability patterns:
+### 1. Container Orchestration
+- Kubernetes support
+- Docker containers
+- Service mesh
+- Auto-scaling
 
-### 1. Error Handling
-- Graceful Degradation
-- Automatic Retry
-- Circuit Breaking
-- Error Recovery
+### 2. Monitoring System
+Comprehensive monitoring includes:
+- Performance metrics
+- Resource utilization
+- Error tracking
+- Cost analysis
 
-### 2. State Management
-- Transaction Safety
-- State Persistence
-- Recovery Procedures
-- Consistency Maintenance
+## System Integration
 
-## Performance Optimization
+### 1. External Integration
+The system provides multiple integration points:
+- REST APIs
+- WebSocket endpoints
+- Webhook system
+- Event streams
 
-### 1. Query Optimization
-- Vector Search Optimization
-- Cache Strategy
-- Query Planning
-- Result Caching
+### 2. Internal Communication
+Internal components communicate via:
+- GraphQL API
+- Message queues
+- State synchronization
+- Event broadcasting
 
-### 2. Resource Utilization
-- Parallel Processing
-- Resource Pooling
-- Load Distribution
-- Cost Management
+## Operational Features
 
-[Architecture Quote]
-> "The system's multi-tiered architecture enables complex agent interactions while maintaining data consistency and processing efficiency through specialized subsystems for knowledge management and agent orchestration."
+### 1. Monitoring & Management
+- Real-time monitoring
+- Performance analytics
+- Resource tracking
+- Cost management
+
+### 2. Maintenance & Updates
+- Zero-downtime updates
+- Rolling deployments
+- State migration
+- Version management
+
+[Architecture Note]
+> "The system's multi-layered architecture enables complex AI operations while maintaining reliability and performance through mathematical guarantees and formal verification."
 
 [Technical Note]
-> "Each subsystem implements specific optimization strategies, from HNSW indexing in the Knowledge Database to dynamic routing in the Agent Orchestration System."
+> "Each component is designed for both independence and seamless integration, enabling flexible scaling while maintaining system integrity."
 
-[Implementation Insight]
-> "The integration of Chain Graph execution with the Knowledge Database enables agents to share context and knowledge while maintaining independent processing capabilities."
+[Operational Note]
+> "The architecture supports enterprise-grade operations through comprehensive monitoring, security, and maintenance capabilities."
