@@ -96,18 +96,18 @@ Sophisticated agent interaction system:
 1. [Introduction](docs/01_introduction.md) - Platform concepts and basics
 2. [Project Overview](docs/project_overview.md) - Complete capabilities
 3. [System Architecture](docs/02_architecture/overview.md) - Technical design
+4. [Node Decorators Research](research/nodes-decorators/README.md)
 
 ### Core Systems
 1. Chain Graph System
-- [Overview](docs/03_chain_graph/overview.md)
-- [Execution](docs/03_chain_graph/execution.md)
-- [Handles](docs/03_chain_graph/handles.md)
-- [Nodes](docs/03_chain_graph/nodes.md)
-- [Patterns](docs/03_chain_graph/patterns.md)
-
+   - [Overview](docs/03_chain_graph/overview.md)
+   - [Execution](docs/03_chain_graph/execution.md)
+   - [Handles](docs/03_chain_graph/handles.md)
+   - [Nodes](docs/03_chain_graph/nodes.md)
+   - [Patterns](docs/03_chain_graph/patterns.md)
 2. Knowledge Database
-- [Overview](docs/04_kdb/overview.md)
-- [Vector Processing](docs/04_kdb/vector_processing.md)
+   - [Overview](docs/04_kdb/overview.md)
+   - [Vector Processing](docs/04_kdb/vector_processing.md)
 
 ## Production Status
 
